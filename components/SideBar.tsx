@@ -9,7 +9,7 @@ type Props = {
 
 const SideBar: React.FC<Props> = ({ chatRooms }) => {
   return (
-    <aside className="flex flex-col gap-4 px-2 py-8 overflow-y-scroll bg-purple-800 h-screen max-h-screen w-24 align-center">
+    <aside className="flex flex-col gap-4 px-2 py-8 overflow-y-scroll bg-purple-800 h-screen max-h-screen w-24 align-center scrollbar-hide">
       {chatRooms.map((chatroom: ChatRoom) => (
         <SideBarIcon
           name={chatroom.name}
