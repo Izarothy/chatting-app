@@ -9,5 +9,5 @@ export function makeStore() {
   });
 }
 
-const store = makeStore();
+export const store = makeStore();
 export type AppDispatch = typeof store.dispatch;
