@@ -5,7 +5,8 @@ type Props = {
   image: string;
   name: string;
 };
-const SideBarIcon = ({ image, name }: Props) => {
+
+const SideBarIcon: React.FC<Props> = ({ image, name }) => {
   const [serverIconHovered, setServerIconHovered] = useState(false);
   return (
     <>
