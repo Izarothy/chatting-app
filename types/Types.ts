@@ -1,10 +1,10 @@
-export type ChatRoom = {
+export type ChatRoomT = {
   id: number;
   name: string;
   image?: string;
 };
 
-export type Channel = {
+export type ChannelT = {
   id: number;
   name: string;
   isText: boolean;
