@@ -10,4 +10,7 @@ export function makeStore() {
 }
 
 export const store = makeStore();
+
 export type AppDispatch = typeof store.dispatch;
+
+export type AppState = ReturnType<typeof store.getState>;
