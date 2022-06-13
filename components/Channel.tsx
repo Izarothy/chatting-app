@@ -4,21 +4,25 @@ import { AppDispatch } from '../redux/store';
 import { useAppSelector } from '../lib/hooks';
 import { changeCurrentChannel } from '../lib/currentChannelSlice';
 type Props = {
+  id: number;
   name: string;
 };
 
-const Channel: React.FC<Props> = ({ name }) => {
+const Channel: React.FC<Props> = ({ id, name }) => {
   const currentChannel = useAppSelector((state) => state.currentChannel.value);
   const dispatch: AppDispatch = useDispatch();
 
   return (
     <a
-      className="text-white text-lg cursor-pointer"
-      onClick={() => dispatch(changeCurrentChannel(name))}
+      className={`${
+        id === currentChannel.id ? `font-bold` : `font-normal`
+      } text-white text-lg cursor-pointer`}
+      onClick={() =>
+        dispatch(changeCurrentChannel({ id: id, name: name, isText: true }))
+      }
     >
       <strong className="font-bold mr-4">•</strong>
-      {name}
-      {currentChannel}
+      {currentChannel.name}
     </a>
   );
 };

@@ -21,7 +21,8 @@ const Home: NextPage = () => {
             { name: 'chat2', id: 5, isText: true },
           ]}
         />
-        {currentChannel}
+        {currentChannel.name}
+        ID: {currentChannel.id}
       </main>
     </div>
   );
