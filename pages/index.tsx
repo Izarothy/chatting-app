@@ -3,8 +3,10 @@ import Head from 'next/head';
 import Image from 'next/image';
 import ChannelList from '../components/ChannelList';
 import SideBar from '../components/SideBar';
+import { useAppSelector } from '../lib/hooks';
 
 const Home: NextPage = () => {
+  const currentChannel = useAppSelector((state) => state.currentChannel.value);
   return (
     <div>
       <Head>
@@ -14,8 +16,12 @@ const Home: NextPage = () => {
       <main className="flex max-h-screen overflow-hidden w-screen">
         <SideBar chatRooms={Array(25).fill({ name: 'x', image: '/default' })} />
         <ChannelList
-          channels={Array(25).fill({ name: 'chat', id: 5, isText: true })}
+          channels={[
+            ...Array(15).fill({ name: 'chat', id: 5, isText: true }),
+            { name: 'chat2', id: 5, isText: true },
+          ]}
         />
+        {currentChannel}
       </main>
     </div>
   );
