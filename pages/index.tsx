@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import ChannelList from '../components/ChannelList';
+import ChatInfo from '../components/ChatInfo';
 import SideBar from '../components/SideBar';
 import { useAppSelector } from '../lib/hooks';
 
@@ -18,11 +19,10 @@ const Home: NextPage = () => {
         <ChannelList
           channels={[
             ...Array(15).fill({ name: 'chat', id: 5, isText: true }),
-            { name: 'chat2', id: 5, isText: true },
+            { name: 'chat2', id: 1, isText: true },
           ]}
         />
-        {currentChannel.name}
-        ID: {currentChannel.id}
+        <ChatInfo />
       </main>
     </div>
   );
