@@ -9,3 +9,8 @@ export type ChannelT = {
   name: string;
   isText: boolean;
 };
+
+export type MessageT = {
+  id: string;
+  content: string;
+};
