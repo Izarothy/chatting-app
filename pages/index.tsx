@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import ChannelList from '../components/ChannelList';
+import ChatArea from '../components/ChatArea';
 import ChatInfo from '../components/ChatInfo';
 import SideBar from '../components/SideBar';
 import { useAppSelector } from '../lib/hooks';
@@ -22,7 +23,10 @@ const Home: NextPage = () => {
             { name: 'chat2', id: 1, isText: true },
           ]}
         />
-        <ChatInfo />
+        <div className="w-full flex flex-col pb-4">
+          <ChatInfo />
+          <ChatArea />
+        </div>
       </main>
     </div>
   );
