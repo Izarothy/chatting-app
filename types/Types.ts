@@ -11,12 +11,12 @@ export type ChannelT = {
 };
 
 export type MessageT = {
-  id: string;
+  id: number;
   content: string;
 };
 
 export type MemberT = {
-  id: string;
+  id: number;
   name: string;
   avatar?: string;
 };

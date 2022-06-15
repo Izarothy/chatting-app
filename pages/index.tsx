@@ -5,6 +5,7 @@ import ChannelList from '../components/ChannelList';
 import ChatArea from '../components/ChatArea';
 import ChatInfo from '../components/ChatInfo';
 import MemberList from '../components/MemberList';
+import MessageInput from '../components/MessageInput';
 import SideBar from '../components/SideBar';
 import { useAppSelector } from '../lib/hooks';
 
@@ -24,9 +25,10 @@ const Home: NextPage = () => {
             { name: 'chat2', id: 1, isText: true },
           ]}
         />
-        <div className="w-full flex flex-col pb-4">
+        <div className="w-full flex flex-col">
           <ChatInfo />
           <ChatArea />
+          <MessageInput />
         </div>
         <MemberList members={Array(15).fill({ name: 'chatter' })} />
       </main>
