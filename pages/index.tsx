@@ -4,6 +4,7 @@ import Image from 'next/image';
 import ChannelList from '../components/ChannelList';
 import ChatArea from '../components/ChatArea';
 import ChatInfo from '../components/ChatInfo';
+import MemberList from '../components/MemberList';
 import SideBar from '../components/SideBar';
 import { useAppSelector } from '../lib/hooks';
 
@@ -27,6 +28,7 @@ const Home: NextPage = () => {
           <ChatInfo />
           <ChatArea />
         </div>
+        <MemberList members={Array(15).fill({ name: 'chatter' })} />
       </main>
     </div>
   );
