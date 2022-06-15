@@ -14,3 +14,9 @@ export type MessageT = {
   id: string;
   content: string;
 };
+
+export type MemberT = {
+  id: string;
+  name: string;
+  avatar?: string;
+};
