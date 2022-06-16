@@ -1,0 +1,17 @@
+[
+  {
+    "id": 100,
+    "isText": true,
+    "name": "general"
+  },
+  {
+    "id": 101,
+    "isText": true,
+    "name": "music"
+  },
+  {
+    "id": 102,
+    "isText": true,
+    "name": "movies"
+  }
+]
