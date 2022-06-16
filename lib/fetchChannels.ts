@@ -4,6 +4,5 @@ export const fetchChannels = async () => {
   });
   const data = await res.json();
 
-  console.log(data);
-  return data;
+  return data.channels;
 };

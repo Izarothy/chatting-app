@@ -22,7 +22,7 @@ const Channel: React.FC<Props> = ({ id, name }) => {
       }
     >
       <strong className="font-bold mr-4">•</strong>
-      {currentChannel.name}
+      {name}
     </a>
   );
 };
