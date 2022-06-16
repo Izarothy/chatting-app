@@ -13,6 +13,7 @@ export type ChannelT = {
 export type MessageT = {
   id: number;
   content: string;
+  channelID: number;
 };
 
 export type MemberT = {

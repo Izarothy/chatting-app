@@ -17,7 +17,11 @@ const MessageInput = () => {
 
   const sendMessage = (data: Inputs) => {
     dispatch(
-      addMessage({ id: Math.random() * 9999999999, content: data.content })
+      addMessage({
+        id: Math.random() * 9999999999,
+        content: data.content,
+        channelID: currentChannel.id,
+      })
     );
     reset();
   };

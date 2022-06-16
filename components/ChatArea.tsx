@@ -3,7 +3,11 @@ import { useAppSelector } from '../lib/hooks';
 import Message from './Message';
 
 const ChatArea = () => {
-  const messages = useAppSelector((state) => state.messages.value);
+  const allMessages = useAppSelector((state) => state.messages.value);
+  const currentChannel = useAppSelector((state) => state.currentChannel.value);
+  const messages = allMessages.filter(
+    (message) => message.channelID === currentChannel.id
+  );
   return (
     <section className="h-full flex flex-col gap-4 p-4 overflow-scroll scrollbar-hide">
       {messages.map((message) => {
