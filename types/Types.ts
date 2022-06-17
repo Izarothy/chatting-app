@@ -8,6 +8,8 @@ export type MessageT = {
   id: number;
   content: string;
   channelID: number;
+  timestamp: number;
+  author: MemberT;
 };
 
 export type MemberT = {

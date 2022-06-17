@@ -11,6 +11,7 @@ type Inputs = {
 
 const MessageInput = () => {
   const currentChannel = useAppSelector((state) => state.currentChannel.value);
+  const currentMember = useAppSelector((state) => state.currentMember.value);
   const dispatch: AppDispatch = useDispatch();
 
   const { register, handleSubmit, reset } = useForm<Inputs>();
@@ -21,6 +22,8 @@ const MessageInput = () => {
         id: Math.random() * 9999999999,
         content: data.content,
         channelID: currentChannel.id,
+        timestamp: Date.now(),
+        author: currentMember,
       })
     );
     reset();

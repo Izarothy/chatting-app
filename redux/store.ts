@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import channelsSlice from 'lib/channelsSlice';
+import currentMemberSlice from 'lib/currentMemberSlice';
 import currentChannelSlice from '../lib/currentChannelSlice';
 import messagesSlice from '../lib/messagesSlice';
 
@@ -9,6 +10,7 @@ export function makeStore() {
       currentChannel: currentChannelSlice,
       messages: messagesSlice,
       channels: channelsSlice,
+      currentMember: currentMemberSlice,
     },
   });
 }

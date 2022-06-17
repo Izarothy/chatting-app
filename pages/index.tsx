@@ -1,4 +1,5 @@
 import { setChannels } from 'lib/channelsSlice';
+import { changeCurrentMember } from 'lib/currentMemberSlice';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -18,8 +19,11 @@ const Home: NextPage = () => {
   useEffect(() => {
     const currentChannel: string =
       localStorage.getItem('currentChannel') || '100';
-    // const currentMember: MemberT = localStorage.getItem('member') || '{}';
+    const currentMember: MemberT = JSON.parse(
+      JSON.stringify(localStorage.getItem('member')) || '{}'
+    );
 
+    dispatch(changeCurrentMember(currentMember));
     fetchChannels().then((channels: ChannelT[]) => {
       dispatch(setChannels(channels));
     });
