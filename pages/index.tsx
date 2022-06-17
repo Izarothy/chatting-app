@@ -10,9 +10,7 @@ import ChatArea from '../components/ChatArea';
 import ChatInfo from '../components/ChatInfo';
 import MemberList from '../components/MemberList';
 import MessageInput from '../components/MessageInput';
-import SideBar from '../components/SideBar';
 import { fetchChannels } from '../lib/fetchChannels';
-import { useAppSelector } from '../lib/hooks';
 import { ChannelT, MemberT } from '../types/Types';
 
 const Home: NextPage = () => {
@@ -34,7 +32,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex max-h-screen overflow-hidden w-screen">
-        <SideBar chatRooms={Array(25).fill({ name: 'x', image: '/default' })} />
         <ChannelList />
         <div className="w-full flex flex-col">
           <ChatInfo />
