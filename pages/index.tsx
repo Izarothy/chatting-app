@@ -1,5 +1,6 @@
 import { setChannels } from 'lib/channelsSlice';
 import { changeCurrentMember } from 'lib/currentMemberSlice';
+import { setMembers } from 'lib/membersSlice';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -19,11 +20,24 @@ const Home: NextPage = () => {
   useEffect(() => {
     const currentChannel: string =
       localStorage.getItem('currentChannel') || '100';
-    const currentMember: MemberT = JSON.parse(
-      JSON.stringify(localStorage.getItem('member')) || '{}'
-    );
 
-    dispatch(changeCurrentMember(currentMember));
+    if (localStorage.getItem('member')) {
+      const currentMember = JSON.parse(
+        JSON.stringify(localStorage.getItem('member'))
+      );
+      dispatch(setMembers(currentMember)); // for now, will move it to a database later
+      dispatch(changeCurrentMember(currentMember));
+    } else {
+      const currentMember = {
+        name: 'Guest',
+        id: Math.floor(Math.random() * 9999999999),
+      };
+      localStorage.setItem('member', JSON.stringify(currentMember));
+
+      dispatch(setMembers(currentMember));
+      dispatch(changeCurrentMember(currentMember));
+    }
+
     fetchChannels().then((channels: ChannelT[]) => {
       dispatch(setChannels(channels));
     });
@@ -42,7 +56,7 @@ const Home: NextPage = () => {
           <ChatArea />
           <MessageInput />
         </div>
-        <MemberList members={Array(15).fill({ name: 'chatter' })} />
+        <MemberList />
       </main>
     </div>
   );
