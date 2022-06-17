@@ -17,6 +17,8 @@ const MessageInput = () => {
   const { register, handleSubmit, reset } = useForm<Inputs>();
 
   const sendMessage = (data: Inputs) => {
+    if (data.content.length < 1) return;
+
     dispatch(
       addMessage({
         id: Math.random() * 9999999999,
