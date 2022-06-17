@@ -6,7 +6,7 @@ export const currentChannelSlice = createSlice({
   name: 'currentChannel',
   initialState: {
     value: {
-      id: 0,
+      id: 100,
       name: 'general',
     },
   },
