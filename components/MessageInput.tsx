@@ -4,6 +4,7 @@ import { useAppSelector } from '../lib/hooks';
 import { AppDispatch } from '../redux/store';
 import { useForm } from 'react-hook-form';
 import { addMessage } from '../lib/messagesSlice';
+import { socket } from 'pages/index';
 
 type Inputs = {
   content: string;
@@ -12,6 +13,7 @@ type Inputs = {
 const MessageInput = () => {
   const currentChannel = useAppSelector((state) => state.currentChannel.value);
   const currentMember = useAppSelector((state) => state.currentMember.value);
+  const socket = useAppSelector((state) => state.socket.value);
   const dispatch: AppDispatch = useDispatch();
 
   const { register, handleSubmit, reset } = useForm<Inputs>();
@@ -19,15 +21,7 @@ const MessageInput = () => {
   const sendMessage = (data: Inputs) => {
     if (data.content.length < 1) return;
 
-    dispatch(
-      addMessage({
-        id: Math.random() * 9999999999,
-        content: data.content,
-        channelID: currentChannel.id,
-        timestamp: Date.now(),
-        author: currentMember,
-      })
-    );
+    socket!.emit('messages', data);
     reset();
   };
 

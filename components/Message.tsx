@@ -26,7 +26,7 @@ const Message: React.FC<Props> = ({ message }) => {
           {day}/{month}/{year} {hour}:{minute}
         </span>
       </div>
-      z{message.content}
+      {message.content}
     </div>
   );
 };
