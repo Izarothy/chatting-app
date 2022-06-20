@@ -67,7 +67,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex max-h-screen overflow-hidden w-screen">
-        <input onChange={(e) => socket.emit('messages', e.target.value)} />
         <ChannelList />
         <div className="w-full flex flex-col">
           <ChatInfo />
