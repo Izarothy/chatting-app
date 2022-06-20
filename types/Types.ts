@@ -1,3 +1,7 @@
+import { NextApiResponse } from 'next';
+import { Server as NetServer, Socket } from 'net';
+import { Server as SocketIOServer } from 'socket.io';
+
 export type ChannelT = {
   id: number;
   name: string;
@@ -16,4 +20,12 @@ export type MemberT = {
   id: number;
   name: string;
   avatar?: string;
+};
+
+export type NextApiResponseServerIO = NextApiResponse & {
+  socket: Socket & {
+    server: NetServer & {
+      io: SocketIOServer;
+    };
+  };
 };
