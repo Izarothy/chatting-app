@@ -18,40 +18,34 @@ import { io, Socket } from 'socket.io-client';
 import { setSocket } from 'lib/socketSlice';
 import { addMessage } from 'lib/messagesSlice';
 import { useAppSelector } from 'lib/hooks';
+import fetchLocalStorage from 'lib/fetchLocalStorage';
+import { setCurrentChannel } from 'lib/currentChannelSlice';
+import channels from 'data/channels.json';
+
 const socket = io();
 
 const Home: NextPage = () => {
   const dispatch: AppDispatch = useDispatch();
   const currentMember = useAppSelector((state) => state.currentMember.value);
   const currentChannel = useAppSelector((state) => state.currentChannel.value);
+
   useEffect(() => {
     initializeSocket().then((socket) => {
       dispatch(setSocket(socket));
     });
 
-    const currentChannel: string =
-      localStorage.getItem('currentChannel') || '100';
-
-    if (localStorage.getItem('member')) {
-      const currentMember = JSON.parse(
-        JSON.stringify(localStorage.getItem('member'))
-      );
-      dispatch(setMembers(currentMember)); // for now, will move it to a database later
-      dispatch(changeCurrentMember(currentMember));
-    } else {
-      const currentMember = {
-        name: 'Guest',
-        id: Math.floor(Math.random() * 9999999999),
-      };
-      localStorage.setItem('member', JSON.stringify(currentMember));
-
-      dispatch(setMembers(currentMember));
-      dispatch(changeCurrentMember(currentMember));
-    }
-
     fetchChannels().then((channels: ChannelT[]) => {
       dispatch(setChannels(channels));
     });
+
+    let savedChannel: any = fetchLocalStorage('currentChannel');
+    if (savedChannel) {
+      console.log(savedChannel);
+      dispatch(setCurrentChannel(savedChannel));
+      return;
+    }
+
+    localStorage.setItem('currentChannel', JSON.stringify(channels[0]));
   }, []);
 
   socket.on('messages', (message) => {

@@ -29,3 +29,5 @@ export type NextApiResponseServerIO = NextApiResponse & {
     };
   };
 };
+
+export type storedTypes = MemberT | ChannelT | null;

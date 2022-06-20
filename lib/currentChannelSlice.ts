@@ -1,3 +1,4 @@
+import channels from 'data/channels.json';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppState } from '../redux/store';
 import { ChannelT } from '../types/Types';
@@ -5,13 +6,10 @@ import { ChannelT } from '../types/Types';
 export const currentChannelSlice = createSlice({
   name: 'currentChannel',
   initialState: {
-    value: {
-      id: 100,
-      name: 'general',
-    },
+    value: channels[0],
   },
   reducers: {
-    changeCurrentChannel: (state, action: PayloadAction<ChannelT>) => {
+    setCurrentChannel: (state, action: PayloadAction<ChannelT>) => {
       const { name, id } = action.payload;
       state.value.name = name;
       state.value.id = id;
@@ -19,7 +17,7 @@ export const currentChannelSlice = createSlice({
   },
 });
 
-export const { changeCurrentChannel } = currentChannelSlice.actions;
+export const { setCurrentChannel } = currentChannelSlice.actions;
 
 export const currentChannel = (state: AppState) => state.currentChannel.value;
 
