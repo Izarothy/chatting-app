@@ -8,6 +8,8 @@ import { socket } from 'pages/index';
 
 type Inputs = {
   content: string;
+  channelID: number;
+  memberID: number;
 };
 
 const MessageInput = () => {
@@ -20,6 +22,8 @@ const MessageInput = () => {
 
   const sendMessage = (data: Inputs) => {
     if (data.content.length < 1) return;
+    data.channelID = currentChannel.id;
+    data.memberID = currentMember.id;
 
     socket!.emit('messages', data);
     reset();

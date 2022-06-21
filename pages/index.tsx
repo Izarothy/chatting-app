@@ -27,7 +27,6 @@ const socket = io();
 const Home: NextPage = () => {
   const dispatch: AppDispatch = useDispatch();
   const currentMember = useAppSelector((state) => state.currentMember.value);
-  const currentChannel = useAppSelector((state) => state.currentChannel.value);
 
   useEffect(() => {
     initializeSocket().then((socket) => {
@@ -40,8 +39,7 @@ const Home: NextPage = () => {
 
     let savedChannel: any = fetchLocalStorage('currentChannel');
     if (savedChannel) {
-      console.log(savedChannel);
-      dispatch(setCurrentChannel(savedChannel));
+      dispatch(setCurrentChannel(JSON.parse(savedChannel)));
       return;
     }
 
@@ -53,7 +51,7 @@ const Home: NextPage = () => {
       addMessage({
         id: Math.random() * 9999999999,
         content: message.content,
-        channelID: currentChannel.id,
+        channelID: message.channelID,
         timestamp: Date.now(),
         author: currentMember,
       })
