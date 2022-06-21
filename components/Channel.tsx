@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../redux/store';
 import { useAppSelector } from '../lib/hooks';
-import { changeCurrentChannel } from '../lib/currentChannelSlice';
+import { setCurrentChannel } from '../lib/currentChannelSlice';
 type Props = {
   id: number;
   name: string;
@@ -18,7 +18,7 @@ const Channel: React.FC<Props> = ({ id, name }) => {
         id === currentChannel.id ? `font-bold` : `font-normal`
       } text-white text-lg cursor-pointer`}
       onClick={() =>
-        dispatch(changeCurrentChannel({ id: id, name: name, isText: true }))
+        dispatch(setCurrentChannel({ id: id, name: name, isText: true }))
       }
     >
       <strong className="font-bold mr-4">•</strong>
