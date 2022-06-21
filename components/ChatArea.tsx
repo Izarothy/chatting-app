@@ -9,7 +9,7 @@ const ChatArea = () => {
     (message) => message.channelID === currentChannel.id
   );
   return (
-    <section className=" h-full flex flex-col gap-4 p-4 overflow-scroll scrollbar-hide bg-gray-700 text-gray-100">
+    <section className=" h-full flex flex-col gap-4 p-4 overflow-scroll scrollbar-hide bg-secondary-dark text-gray-100">
       {messages.map((message) => {
         return <Message key={message.id} message={message} />;
       })}

@@ -32,7 +32,7 @@ const MessageInput = () => {
   return (
     <form onSubmit={handleSubmit(sendMessage)}>
       <input
-        className="p-3 w-full border-2 border-gray-700 bg-gray-600 outline-none text-gray-100"
+        className="p-3 w-full border-l-4 border-yellow-600 bg-gray-800 outline-none text-white"
         type="text"
         placeholder={`Message ${currentChannel.name}`}
         {...register('content')}
