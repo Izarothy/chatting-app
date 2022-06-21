@@ -64,7 +64,7 @@ const Home: NextPage = () => {
         <title>Chatting App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex max-h-screen overflow-hidden w-screen">
+      <main className="hidden md:flex max-h-screen overflow-hidden w-screen">
         <ChannelList />
         <div className="w-full flex flex-col">
           <ChatInfo />
@@ -72,6 +72,9 @@ const Home: NextPage = () => {
           <MessageInput />
         </div>
         <MemberList />
+      </main>
+      <main className="md:hidden bg-primary-dark grid place-items-center h-screen text-gray-100 font-bold text-xl">
+        Sorry, this page isn't available for your device's resolution
       </main>
     </div>
   );
