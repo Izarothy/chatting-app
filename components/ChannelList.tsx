@@ -8,7 +8,11 @@ const ChannelList = () => {
   return (
     <section className="flex flex-col gap-4 h-screen bg-primary-dark w-1/6 pt-8 pl-6">
       {channels?.map((channel: ChannelT) => (
-        <Channel key={channel.id} name={channel.name} id={channel.id} />
+        <Channel
+          key={channel.id}
+          name={channel.name}
+          id={JSON.parse(channel.id)}
+        />
       ))}
     </section>
   );

@@ -3,20 +3,19 @@ import { AppState } from '../redux/store';
 import { MemberT } from '../types/Types';
 
 interface CurrentMemberState {
-  value: MemberT;
+  value: MemberT | null;
 }
 
 const initialState: CurrentMemberState = {
-  value: {
-    id: Math.random() * 9999999999,
-    name: 'Guest',
-  },
+  value: null,
 };
 export const currentMemberSlice = createSlice({
   name: 'currentMember',
   initialState: initialState,
   reducers: {
-    changeCurrentMember: (state, action: PayloadAction<MemberT>) => {},
+    changeCurrentMember: (state, action: PayloadAction<MemberT>) => {
+      state.value = action.payload;
+    },
   },
 });
 

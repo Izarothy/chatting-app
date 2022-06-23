@@ -1,26 +1,28 @@
-import { setChannels } from 'lib/channelsSlice';
-import { changeCurrentMember } from 'lib/currentMemberSlice';
-import { setMembers } from 'lib/membersSlice';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from 'redux/store';
+import { io } from 'socket.io-client';
+
 import ChannelList from '../components/ChannelList';
 import ChatArea from '../components/ChatArea';
 import ChatInfo from '../components/ChatInfo';
 import MemberList from '../components/MemberList';
 import MessageInput from '../components/MessageInput';
+import LoginForm from 'components/LoginForm';
+
+import { setChannels } from 'lib/channelsSlice';
 import { fetchChannels } from '../lib/fetchChannels';
-import { ChannelT } from '../types/Types';
 import initializeSocket from 'lib/initializeSocket';
-import { io, Socket } from 'socket.io-client';
 import { setSocket } from 'lib/socketSlice';
 import { addMessage } from 'lib/messagesSlice';
 import { useAppSelector } from 'lib/hooks';
 import fetchLocalStorage from 'lib/fetchLocalStorage';
 import { setCurrentChannel } from 'lib/currentChannelSlice';
+
 import channels from 'data/channels.json';
+import { ChannelT } from '../types/Types';
 
 const socket = io();
 
@@ -47,9 +49,11 @@ const Home: NextPage = () => {
   }, []);
 
   socket.on('messages', (message) => {
+    if (!currentMember) return;
+
     dispatch(
       addMessage({
-        id: Math.random() * 9999999999,
+        id: String(Math.random() * 9999999999),
         content: message.content,
         channelID: message.channelID,
         timestamp: Date.now(),
@@ -58,7 +62,7 @@ const Home: NextPage = () => {
     );
   });
 
-  return (
+  return currentMember ? (
     <div>
       <Head>
         <title>Chatting App</title>
@@ -77,6 +81,8 @@ const Home: NextPage = () => {
         Sorry, this page isn't available for your device's resolution
       </main>
     </div>
+  ) : (
+    <LoginForm />
   );
 };
 

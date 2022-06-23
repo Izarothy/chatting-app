@@ -1,10 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const Member = mongoose.model(
-  'Member',
-  new Schema({
-    name: String,
-  })
-);
+const memberSchema = new Schema({ name: String, password: String });
 
-export default Member;
+export const Member =
+  mongoose.models.Member || mongoose.model('Member', memberSchema);

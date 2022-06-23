@@ -3,21 +3,21 @@ import { Server as NetServer, Socket } from 'net';
 import { Server as SocketIOServer } from 'socket.io';
 
 export type ChannelT = {
-  id: number;
+  id: string;
   name: string;
   isText: boolean;
 };
 
 export type MessageT = {
-  id: number;
+  id: string;
   content: string;
-  channelID: number;
+  channelID: string;
   timestamp: number;
   author: MemberT;
 };
 
 export type MemberT = {
-  id: number;
+  id: string;
   name: string;
   avatar?: string;
 };

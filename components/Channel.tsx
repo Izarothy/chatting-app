@@ -4,7 +4,7 @@ import { AppDispatch } from '../redux/store';
 import { useAppSelector } from '../lib/hooks';
 import { setCurrentChannel } from '../lib/currentChannelSlice';
 type Props = {
-  id: number;
+  id: string;
   name: string;
 };
 
