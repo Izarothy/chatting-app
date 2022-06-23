@@ -33,6 +33,7 @@ const LoginForm = () => {
 
     if (!res.ok || !res) return setError('There was an error while logging in');
     const returnedMember = await res.json();
+    localStorage.setItem('member', JSON.stringify(returnedMember.memberAdded));
     dispatch(changeCurrentMember(returnedMember.memberAdded));
   };
   return (

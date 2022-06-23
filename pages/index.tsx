@@ -23,6 +23,9 @@ import { setCurrentChannel } from 'lib/currentChannelSlice';
 
 import channels from 'data/channels.json';
 import { ChannelT } from '../types/Types';
+import { changeCurrentMember } from 'lib/currentMemberSlice';
+import memberTypeGuard from 'lib/typeguards/memberTypeGuard';
+import channelsTypeGuard from 'lib/typeguards/channelTypeGuard';
 
 const socket = io();
 
@@ -39,13 +42,17 @@ const Home: NextPage = () => {
       dispatch(setChannels(channels));
     });
 
-    let savedChannel: any = fetchLocalStorage('currentChannel');
-    if (savedChannel) {
-      dispatch(setCurrentChannel(JSON.parse(savedChannel)));
-      return;
+    const savedChannel = fetchLocalStorage('currentChannel');
+    if (channelsTypeGuard(savedChannel)) {
+      dispatch(setCurrentChannel(savedChannel));
+    } else {
+      localStorage.setItem('currentChannel', JSON.stringify(channels[0]));
     }
 
-    localStorage.setItem('currentChannel', JSON.stringify(channels[0]));
+    const savedMember = fetchLocalStorage('member');
+    if (memberTypeGuard(savedMember)) {
+      dispatch(changeCurrentMember(savedMember));
+    }
   }, []);
 
   socket.on('messages', (message) => {
