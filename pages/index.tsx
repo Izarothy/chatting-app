@@ -57,7 +57,7 @@ const Home: NextPage = () => {
         content: message.content,
         channelID: message.channelID,
         timestamp: Date.now(),
-        author: currentMember,
+        author: message.author,
       })
     );
   });

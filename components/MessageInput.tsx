@@ -3,13 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../lib/hooks';
 import { AppDispatch } from '../redux/store';
 import { useForm } from 'react-hook-form';
-import { addMessage } from '../lib/messagesSlice';
-import { socket } from 'pages/index';
+import { MemberT } from 'types/Types';
 
 type Inputs = {
   content: string;
   channelID: string;
-  memberID: string;
+  author: MemberT;
 };
 
 const MessageInput = () => {
@@ -21,9 +20,9 @@ const MessageInput = () => {
   const { register, handleSubmit, reset } = useForm<Inputs>();
 
   const sendMessage = (data: Inputs) => {
-    if (data.content.length < 1) return;
+    if (data.content.length < 1 || !currentMember) return;
     data.channelID = currentChannel.id;
-    data.memberID = currentMember!.id;
+    data.author = currentMember;
 
     socket!.emit('messages', data);
     reset();
