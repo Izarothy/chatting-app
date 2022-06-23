@@ -15,7 +15,7 @@ const Channel: React.FC<Props> = ({ id, name }) => {
   return (
     <a
       className={`${
-        id === currentChannel.id ? `font-bold` : `font-normal`
+        id == currentChannel.id ? `font-bold` : `font-normal`
       } text-white text-lg cursor-pointer`}
       onClick={() =>
         dispatch(setCurrentChannel({ id: id, name: name, isText: true }))
