@@ -4,7 +4,7 @@ const fetchLocalStorage = (itemName: string): storedTypes => {
   const item: string | null = localStorage.getItem(itemName);
   if (!item) return null;
 
-  const parsedItem: storedTypes = JSON.parse(JSON.stringify(item));
+  const parsedItem: storedTypes = JSON.parse(item);
   return parsedItem;
 };
 
