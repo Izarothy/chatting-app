@@ -10,6 +10,7 @@ export const currentChannelSlice = createSlice({
   },
   reducers: {
     setCurrentChannel: (state, action: PayloadAction<ChannelT>) => {
+      localStorage.setItem('currentChannel', JSON.stringify(action.payload));
       const { name, id } = action.payload;
       state.value.name = name;
       state.value.id = id;
